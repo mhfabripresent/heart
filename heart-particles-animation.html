@@ -15,6 +15,7 @@
         flex-direction: column;
         justify-content: flex-end;
         align-items: center;
+        position: relative;
       }
 
       canvas {
@@ -45,21 +46,23 @@
       }
 
       .spotify-container {
-        position: relative;
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
         width: 100%;
-        max-width: 350px;
+        max-width: 360px;
         padding: 0 10px;
-        margin-bottom: 8px;
         z-index: 2;
 
         opacity: 0;
-        transform: translateY(20px);
+        transform: translate(-50%, 20px);
         transition: opacity 1s ease, transform 1s ease;
       }
 
       .spotify-container.visible {
         opacity: 1;
-        transform: translateY(0);
+        transform: translate(-50%, 0);
       }
 
       /* Responsividade para celulares */
