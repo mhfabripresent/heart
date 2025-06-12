@@ -30,8 +30,9 @@
       .spotify-container {
         position: relative;
         width: 100%;
-        max-width: 360px;
-        padding: 0 20px 20px;
+        max-width: 350px;
+        padding: 0 10px;
+        margin-bottom: 8px; /* deixa coladinho no coração */
         z-index: 2;
       }
 
@@ -39,14 +40,33 @@
         width: 100%;
         height: 80px;
         border-radius: 12px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
         transition: all 0.3s ease;
       }
 
+      .spotify-container {
+        position: relative;
+        width: 100%;
+        max-width: 350px;
+        padding: 0 10px;
+        margin-bottom: 8px;
+        z-index: 2;
+
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 1s ease, transform 1s ease;
+      }
+
+      .spotify-container.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
       /* Responsividade para celulares */
-      @media (max-width: 420px) {
+      @media screen and (max-width: 420px) {
         .spotify-container {
-          padding: 0 10px 10px;
+          padding: 0 8px;
+          margin-bottom: 4px; /* ainda mais colado */
         }
 
         .spotify-container iframe {
@@ -54,7 +74,12 @@
         }
       }
 
-      @media (max-width: 320px) {
+      @media screen and (max-width: 320px) {
+        .spotify-container {
+          padding: 0 6px;
+          margin-bottom: 2px;
+        }
+
         .spotify-container iframe {
           height: 64px;
         }
@@ -76,6 +101,17 @@
     </div>
 
     <!-- Script da animação de partículas -->
+
+    <script>
+      window.addEventListener("load", () => {
+        setTimeout(() => {
+          document
+            .querySelector(".spotify-container")
+            ?.classList.add("visible");
+        }, 2000); // aparece após 2 segundos
+      });
+    </script>
+
     <script>
       var settings = {
         particles: {
