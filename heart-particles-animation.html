@@ -10,55 +10,33 @@
         padding: 0;
         background-color: black;
         overflow-x: hidden;
-        overflow-y: auto; /* ATIVA SCROLL VERTICAL */
+        overflow-y: auto; /* permite rolar verticalmente */
         min-height: 100vh;
         display: flex;
         flex-direction: column;
         align-items: center;
+        position: relative;
       }
 
       canvas {
         width: 100%;
-        max-width: 100vw;
         height: auto;
         display: block;
+        position: relative; /* IMPORTANTE: tira do modo absoluto */
+        z-index: 0;
       }
 
       .spotify-container {
-        position: relative;
-        width: 100%;
-        max-width: 350px;
-        padding: 0 10px;
-        margin-bottom: 8px; /* deixa coladinho no coração */
-        z-index: 2;
-      }
-
-      .spotify-container iframe {
-        width: 100%;
-        height: 80px;
-        border-radius: 12px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-        transition: all 0.3s ease;
-      }
-
-      .spotify-container {
-        position: absolute;
-        bottom: 0;
-        left: 50%;
-        transform: translateX(-50%);
         width: 100%;
         max-width: 360px;
-        padding: 0 10px;
+        padding: 20px 10px;
         z-index: 2;
-        margin-top: -20px;
         opacity: 0;
-        transform: translate(-50%, 20px);
-        transition: opacity 1s ease, transform 1s ease;
+        transition: opacity 1s ease;
       }
 
       .spotify-container.visible {
         opacity: 1;
-        transform: translate(-50%, 0);
       }
 
       /* Responsividade para celulares */
@@ -95,9 +73,18 @@
         frameborder="0"
         allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
         loading="lazy"
-      >
-      </iframe>
+      ></iframe>
     </div>
+
+    <script>
+      window.addEventListener("load", () => {
+        setTimeout(() => {
+          document
+            .querySelector(".spotify-container")
+            ?.classList.add("visible");
+        }, 2000);
+      });
+    </script>
 
     <!-- Script da animação de partículas -->
 
